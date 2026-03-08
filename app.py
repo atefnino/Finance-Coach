@@ -74,6 +74,7 @@ with tab2:
                 )
                 st.success("Grok Analysis Complete")
                 st.markdown(response.output_text)
+		st.session_state.analysis_count += 1
     else:
         st.info("Upload a CSV and enter your API key to unlock Grok analysis.")
 
@@ -89,17 +90,23 @@ with tab3:
             )
             st.markdown(response.output_text)
 
-# --- Monetization Placeholder (Free → Premium) ---
+# --- Monetization & Premium Upgrade (Lemon Squeezy) ---
 st.divider()
-st.subheader("Monetization Ready")
-st.write("This MVP is free for you to launch. To generate revenue immediately:")
-col_a, col_b = st.columns(2)
-with col_a:
-    st.markdown("**Free Tier** (built-in): 5 analyses per month per user")
-with col_b:
-    if st.button("🚀 Add Stripe Premium ($4.99/month)", type="primary"):
-        st.success("Stripe integration code ready below. Copy into a new file `stripe_checkout.py` and follow Stripe dashboard instructions.")
+st.subheader("Monetization & Premium")
+st.caption("Free tier: 5 analyses per session • Premium unlocks unlimited usage")
 
+if "analysis_count" not in st.session_state:
+    st.session_state.analysis_count = 0
+
+if st.session_state.analysis_count >= 5:
+    st.warning("You have reached the free limit for this session.")
+    if st.button("🚀 Upgrade to Premium – $4.99/month", type="primary"):
+        st.link_button("Open Premium Checkout", "PASTE_YOUR_LEMON_SQUEEZY_CHECKOUT_URL_HERE")
+else:
+    st.info(f"Analyses used this session: {st.session_state.analysis_count}/5")
+
+# Inside the Grok Analysis tab, AFTER successful response, add this line:
+# st.session_state.analysis_count += 1
 # Stripe quick-start snippet (add later)
 st.code("""
 import stripe
