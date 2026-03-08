@@ -73,8 +73,7 @@ with tab2:
                     ]
                 )
                 st.success("Grok Analysis Complete")
-                st.markdown(response.output_text)
-		st.session_state.analysis_count += 1
+                st.markdown(response.output_text)st.session_state.analysis_count += 1
     else:
         st.info("Upload a CSV and enter your API key to unlock Grok analysis.")
 
