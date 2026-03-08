@@ -74,7 +74,8 @@ with tab2:
                 )
                 st.success("Grok Analysis Complete")
                 st.markdown(response.output_text)
-st.session_state.analysis_count += 1
+		st.session_state.analysis_count += 1
+
     else:
         st.info("Upload a CSV and enter your API key to unlock Grok analysis.")
 
@@ -101,7 +102,7 @@ if "analysis_count" not in st.session_state:
 if st.session_state.analysis_count >= 5:
     st.warning("You have reached the free limit for this session.")
     if st.button("🚀 Upgrade to Premium – $4.99/month", type="primary"):
-        st.link_button("Open Premium Checkout", "PASTE_YOUR_LEMON_SQUEEZY_CHECKOUT_URL_HERE")
+        st.link_button("Open Premium Checkout", "https://ninofinance.lemonsqueezy.com/checkout/buy/c3c22bf3-e4f1-4859-ba73-0d377db7ff38")
 else:
     st.info(f"Analyses used this session: {st.session_state.analysis_count}/5")
 
